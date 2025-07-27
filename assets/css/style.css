@@ -1,0 +1,147 @@
+
+html, body {
+  min-height: 100%;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1; 
+  padding: 20px;
+}
+
+.uk-background-primary {
+    background: #f3ecdf;
+    
+}
+.uk-background-secondary {
+    background: whitesmoke !important;
+    
+}
+.uk-font {
+    font-family: "ADLaM Display", system-ui;
+    font-weight: 400;
+    font-style: normal;
+    color: black !important;
+}
+.uk-font-title {
+    font-family: "Bangers", system-ui;
+    font-weight: 400;
+    font-style: normal;
+    color: black;
+}
+.uk-navbar-nav > li > a{
+    font-family: "ADLaM Display", system-ui;
+    font-weight: 400;
+    font-style: normal;
+    color: black;
+    font-size: 20px;
+}
+.uk-breadcrumb > li > a{
+    font-family: "ADLaM Display", system-ui;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 18px ;
+    color: black;
+}
+.uk-breadcrumb > li > span{
+    font-family: "ADLaM Display", system-ui;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 18px ;
+    color: #c8362b !important;
+}
+.uk-active {
+    color: #c8362b !important;
+}   
+.uk-img-center{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.uk-button-default{
+    background-color: #c8362b !important;
+    border: none;
+    color: #f3ecdf;
+    font-size: 18px;
+}
+.uk-button-default:hover{
+    background-color: #c8352bc9!important;
+    color:black;
+}
+.uk-raduis{
+    border-radius: 15px;
+}
+.uk-raduis-img{
+    border-radius: 15px 15px 0px 0px !important;
+}
+.uk-card-default{
+    background: #f3ecdf;
+    border: solid black 2px;
+}
+h1{
+    font-size: 50px;
+} 
+hr{
+    border-bottom: black solid 2px !important;
+    width: 25%;
+}
+.image-fond {
+    position: relative;
+    display: inline-block;
+}
+ 
+.image-fond::before {
+    content: "";
+    position: absolute;
+    top: 2px; /* Décalage vertical */
+
+    width: 87%;
+    height: 100%;
+    border-radius: 15px;
+    background: #fe3d3d !important;
+    transform: rotate(5deg); /* Effet de rotation */
+    z-index: 0 ;
+}
+ 
+.image-fond .contenu, img , video{
+    display: block;
+    max-width: 100%;
+    position: relative;
+    z-index: 2 ;
+}
+.uk-img{
+    filter:sepia(100%) grayscale(50%);
+}
+.uk-img-hover:hover{
+    filter: sepia(50%) grayscale(25%);
+}
+.image-crop {
+    height: 200px;
+    overflow: hidden;
+}
+
+.image-crop img {
+    display: block;
+    width: 100%;      /* garde la largeur d'origine */
+    height: auto;     /* garde la hauteur proportionnelle */
+}
+.uk-border{
+    border: solid black 2px !important;
+}
+
+.uk-table th, .uk-table td{
+  text-align: center;
+  vertical-align: middle ;
+}
+.uk-table-title{
+    font-weight: bold !important;
+    text-shadow: 2px 2px 2px #ffe6b9;
+}
+input::placeholder {
+  color: black !important
+}

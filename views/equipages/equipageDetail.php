@@ -6,12 +6,22 @@
 
 <!-- Récuperer l'animé -->
 <?php 
-  if(!isset($_GET['id']) | $_GET['id'] == '' | !isset($_GET['idSource']) | $_GET['idSource'] == ''){
+  if(!isset($_GET['id']) | $_GET['id'] == '' | !isset($_GET['idSource']) | $_GET['idSource'] == '' | !isset($_GET['source']) | $_GET['source'] == ''){
     header('Location:/views/error.php');
   }
 
   require_once('../../app/animeAPI.php');
-  $source = getAnimeById($_GET['idSource']);
+  if($_GET['source'] == "Anime"){
+    $source = getAnimeById($_GET['idSource']);
+    $nom ="Animés";
+    $page = "anime";
+  }elseif($_GET['source'] == "Manga"){
+    $source = getMangaById($_GET['idSource']);
+    $nom = "Mangas";
+    $page = 'manga';
+  }else{
+    header('Location:/views/error.php');
+  }
   $equipage = null;
   foreach($source -> equipages as $oneEquipage){
     if($oneEquipage -> id == $_GET['id']){
@@ -19,10 +29,24 @@
     }
   }
 ?>
-
-
+<?php 
+  $membres = [];
+  foreach($equipage -> membres as $membre){
+    $character = getCharacterById($membre -> id);
+    array_push($membres, $character);
+  }
+?>
 <!-- Contenu de la page -->
 <div class="uk-container uk-margin-top uk-margin-bottom" style="position: relative;">
+  <nav aria-label="Fil d'Ariane">
+    <ul class="uk-breadcrumb">
+      <li><a href="../../index.php">Accueil</a></li>
+      <li><a href="../<?=$page?>s/<?=$page?>s.php"><?=$nom?></a></li>
+      <li><a href="../<?=$page?>s/<?=$page?>Detail.php?id=<?=$source->id?>"><?=$source->title?></a></li>
+      <li><a href="equipagesBySource.php?id=<?=$_GET['id']?>&source=<?=$_GET['source']?>">Equipages</a></li>
+      <li><span><?=$equipage->name?></span></li>
+    </ul>
+  </nav>
   <!-- Lien pour revenir en arrière -->
   <a class="uk-position-top-right uk-margin-small-right" href="javascript:history.back()" uk-icon="icon: close; ratio: 2"></a>
   <!-- Titre de l'anime -->
@@ -101,7 +125,31 @@
       </div>
     </div>
   </div>
-
+  <h2 class="uk-text-center uk-font uk-active">Membres</h2>
+  <div class="uk-grid-match uk-child-width-1-4@l uk-child-width-1-4@m uk-child-width-1-2@s uk-flex uk-flex-center" uk-grid uk-height-match="target: .uk-card">
+      <?php foreach($membres as $membre) : ?>
+        <div class="image-fond">
+          <div class="uk-card uk-card-default uk-raduis contenu" style="position: relative;">
+            <div class="image-crop">
+              <img src="<?=$membre->image_url ?>" alt="<?=$membre->name ?>" width="100%" class="uk-raduis-img uk-img">
+            </div>
+            <div class="uk-margin-left uk-margin-right" style="margin-bottom: 70px;">
+              <h2 class="uk-card-title uk-text-center uk-active uk-font"><?=$membre->name ?></h2>
+              <?php 
+                $mots = explode(" ", $membre->description);
+                $text_grand = implode(" ", array_splice($mots, 0, 20));
+                $mots = explode(" ", $membre->description);
+                $text_petit = implode(' ', array_slice($mots, 0, 10));
+              ?>
+              <p class="uk-text-center uk-visible@s uk-font"><?=$text_grand?> ...</p>
+              <p class="uk-text-center uk-hidden@s uk-font"><?=$text_petit?> ...</p>
+            </div>
+            <a href="../characters/characterDetail.php?id=<?=$membre->id?>" class="uk-link-reset uk-position-bottom-center uk-margin-bottom">
+              <button class="uk-button uk-button-default uk-raduis">Voir Plus</button>
+            </a>
+          </div>
+        </div>
+      <?php endforeach ?>             
 </div>
 <!-- Modal pour la couverture -->
 <div id="cover" uk-modal>

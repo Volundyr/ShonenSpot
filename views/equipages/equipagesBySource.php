@@ -6,16 +6,26 @@
 
 <!-- Récuperer l'animé -->
 <?php 
-  if(!isset($_GET['id']) | $_GET['id'] == ''){
+  if(!isset($_GET['id']) | $_GET['id'] == '' | !isset($_GET['source']) | $_GET['source'] == ''){
     header('Location:/views/error.php');
   }
 
   require_once('../../app/animeAPI.php');
-  $anime = getAnimeById($_GET['id']);
+    if($_GET['source'] == "Anime"){
+    $source = getAnimeById($_GET['id']);
+    $nom ="Animés";
+    $page = "anime";
+  }elseif($_GET['source'] == "Manga"){
+    $source = getMangaById($_GET['id']);
+    $nom = "Mangas";
+    $page = 'manga';
+  }else{
+    header('Location:/views/error.php');
+  }
 
   $equipages = [];
 
-  foreach($anime -> equipages as $equipage){
+  foreach($source -> equipages as $equipage){
     array_push($equipages, $equipage);
   }
 ?>
@@ -23,14 +33,14 @@
   <nav aria-label="Fil d'Ariane">
     <ul class="uk-breadcrumb">
       <li><a href="../../index.php">Accueil</a></li>
-      <li><a href="../animes/animes.php">Animés</a></li>
-      <li><a href="../animes/animeDetail.php?id=<?=$anime->id?>"><?=$anime->title?></a></li>
+      <li><a href="../<?=$page?>s/<?=$page?>s.php"><?=$nom?></a></li>
+      <li><a href="../<?=$page?>s/<?=$page?>Detail.php?id=<?=$source->id?>"><?=$source->title?></a></li>
       <li><span>Equipages</span></li>
     </ul>
   </nav>
 </div>
 <div class="uk-margin-top uk-margin-large-left uk-margin-large-right uk-margin-bottom">
-  <h1 class="uk-font uk-text-center">Equipages de <?=$anime -> title?></h1>
+  <h1 class="uk-font uk-text-center">Equipages de <?=$source -> title?></h1>
     <div class="uk-grid-match uk-child-width-1-6@l uk-child-width-1-4@m uk-child-width-1-3@s uk-child-width-1-2 uk-flex uk-flex-center" uk-grid uk-height-match="target: .uk-card">
       <?php foreach($equipages as $equipage) : ?>
         <div class="image-fond">
@@ -49,7 +59,7 @@
               <p class="uk-text-center uk-visible@s uk-font"><?=$text_grand?> ...</p>
               <p class="uk-text-center uk-hidden@s uk-font"><?=$text_petit?> ...</p>
             </div>
-            <a href="equipageDetail.php?idSource=<?=$anime->id ?>&id=<?=$equipage-> id?>" class="uk-link-reset uk-position-bottom-center uk-margin-bottom">
+            <a href="equipageDetail.php?idSource=<?=$source->id ?>&id=<?=$equipage-> id?>&source=<?=$_GET['source']?>" class="uk-link-reset uk-position-bottom-center uk-margin-bottom">
               <button class="uk-button uk-button-default uk-raduis">Voir Plus</button>
             </a>
           </div>

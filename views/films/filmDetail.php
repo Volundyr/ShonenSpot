@@ -17,7 +17,7 @@
 ?>
 <?php 
   $manga = null;
-  if($film -> manga_id != null){
+  if(isset($film -> manga_id)){
     foreach($allMangas as $oneManga){
       if($oneManga -> id == $film -> manga_id){
         $manga = $oneManga;
@@ -27,7 +27,7 @@
 ?>
 <?php 
   $anime = null;
-  if($film -> anime_id != null){
+  if(isset($film -> anime_id)){
     foreach($allAnimes as $oneAnime){
       if($oneAnime -> id == $film -> anime_id){
         $anime = $oneAnime;

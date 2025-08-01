@@ -14,7 +14,7 @@
 ?>
 <?php 
   $anime = null;
-  if($character -> anime_id != null){
+  if(isset($character -> anime_id)){
     foreach($allanimes as $oneAnime){
       if($oneAnime -> id == $character -> anime_id){
         $anime = $oneAnime;
@@ -24,10 +24,23 @@
 ?>
 <?php 
   $manga = null;
-  if($character -> manga_id != null){
+  if(isset($character -> manga_id)){
     foreach($allMangas as $oneManga){
       if($oneManga -> id == $character -> manga_id){
         $manga = $oneManga;
+      }
+    }
+  }
+?>
+<?php 
+  $equipage = null;
+  if($manga != null && isset($manga -> equipages)){
+    foreach($manga -> equipages as $oneEquipage){
+      $theEquipage = $oneEquipage;
+      foreach($oneEquipage -> membres as $membre){
+        if($membre -> id == $character -> id){
+          $equipage = $theEquipage;
+        }
       }
     }
   }
@@ -182,6 +195,32 @@
             </div>
             <a href="../mangas/mangaDetail.php?id=<?=$manga->id?>" class="uk-link-reset uk-position-bottom-center uk-margin-bottom">
               <button class="uk-button-default uk-button uk-raduis">Voir plus</button>
+            </a>
+          </div>
+        </div>
+      </div>
+    <?php } ?>
+    <?php if($equipage != null) { ?>
+      <div>
+        <h3 class="uk-font uk-text-center">Equipage</h3>
+        <div class="image-fond">
+          <div class="uk-card uk-card-default uk-raduis contenu" style="position: relative;">
+            <div class="image-crop">
+              <img src="<?=$equipage->image ?>" alt="<?=$equipage->name ?>" width="100%" class="uk-raduis-img uk-img">
+            </div>
+            <div class="uk-margin-left uk-margin-right" style="margin-bottom: 70px;">
+              <h2 class="uk-card-title uk-text-center uk-active uk-font"><?=$equipage->name ?></h2>
+              <?php 
+                $mots = explode(" ", $equipage->description);
+                $text_grand = implode(" ", array_splice($mots, 0, 20));
+                $mots = explode(" ", $equipage->description);
+                $text_petit = implode(' ', array_slice($mots, 0, 10));
+              ?>
+              <p class="uk-text-center uk-visible@s uk-font"><?=$text_grand?> ...</p>
+              <p class="uk-text-center uk-hidden@s uk-font"><?=$text_petit?> ...</p>
+            </div>
+            <a href="../equipages/equipageDetail.php?idSource=<?=$manga->id ?>&id=<?=$equipage-> id?>&source=Manga" class="uk-link-reset uk-position-bottom-center uk-margin-bottom">
+              <button class="uk-button uk-button-default uk-raduis">Voir Plus</button>
             </a>
           </div>
         </div>

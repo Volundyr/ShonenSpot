@@ -28,7 +28,7 @@
 <?php 
   $nbrFilms = 0;
   foreach($allFilms as $film){
-    if($film -> manga_id == $manga -> id){
+    if(isset($film -> manga_id) && $film -> manga_id == $manga -> id){
       $nbrFilms ++;
     }
   }
@@ -192,6 +192,25 @@
         </div>
       </div>
     </div>
+    <?php if(isset($manga -> equipages)){?>
+      <div>
+        <h3 class="uk-font uk-text-center">Equipages</h3>
+        <div class="image-fond">
+          <div class="contenu uk-card uk-card-default uk-raduis" style="position: relative;">
+            <div class="image-crop">
+              <img src="../../assets/img/equipages.png" alt="logo pour les équipages" class="uk-raduis-img uk-img" width="100%">
+            </div>
+            <div class="uk-margin-left uk-margin-right" style="margin-bottom: 70px;">
+              <h2 class="uk-card-title uk-text-center uk-font uk-active">Equipages</h2>
+              <p class="uk-text-center uk-font">Plongez au cœur de l’univers de <?=$manga->title?> et découvrez tous ses équipages emblématiques.</p>
+            </div>
+            <a href="../equipages/equipagesBySource.php?id=<?=$manga->id?>&source=Manga" class="uk-link-reset uk-position-bottom-center uk-margin-bottom">
+              <button class="uk-button-default uk-button uk-raduis">Voir plus</button>
+            </a>
+          </div>
+        </div>
+      </div>
+    <?php }?>
     <?php if($nbrFilms != 0){ ?>
       <div>
       <h3 class="uk-font uk-text-center">Films</h3>

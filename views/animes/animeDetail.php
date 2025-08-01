@@ -17,7 +17,7 @@
 ?>
 <?php 
   $manga = null;
-  if($anime -> manga_id != null){
+  if(isset($anime -> manga_id)){
     foreach($allMangas as $oneManga){
       if($oneManga -> id == $anime -> manga_id){
         $manga = $oneManga;
@@ -236,7 +236,7 @@
               <h2 class="uk-card-title uk-text-center uk-font uk-active">Equipages</h2>
               <p class="uk-text-center uk-font">Plongez au cœur de l’univers de <?=$anime->title?> et découvrez tous ses équipages emblématiques.</p>
             </div>
-            <a href="../equipages/equipagesByAnime.php?id=<?=$anime->id?>" class="uk-link-reset uk-position-bottom-center uk-margin-bottom">
+            <a href="../equipages/equipagesBySource.php?id=<?=$anime->id?>&source=Anime" class="uk-link-reset uk-position-bottom-center uk-margin-bottom">
               <button class="uk-button-default uk-button uk-raduis">Voir plus</button>
             </a>
           </div>

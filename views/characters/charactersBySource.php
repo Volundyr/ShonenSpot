@@ -6,18 +6,29 @@
 
 <!-- Récuperer l'animé -->
 <?php 
-  if(!isset($_GET['id']) | $_GET['id'] == ''){
+  if(!isset($_GET['id']) | $_GET['id'] == ''| !isset($_GET['source']) | $_GET['source'] == ''){
     header('Location:/views/error.php');
   }
 
   require_once('../../app/animeAPI.php');
-  $anime = getAnimeById($_GET['id']);
   $allCharaters = getAllCharacters();
-
   $characters = [];
+  if($_GET['source'] == "Anime"){
+    $source = getAnimeById($_GET['id']);
+    $nom ="Animés";
+    $page = "anime";
+    $lien = 'anime_id';
+  }elseif($_GET['source'] == "Manga"){
+    $source = getMangaById($_GET['id']);
+    $nom = "Mangas";
+    $page = 'manga';
+    $lien = 'manga_id';
+  }else{
+    header('Location:/views/error.php');
+  }
 
   foreach($allCharaters as $character){
-    if($character -> anime_id == $_GET['id']){
+    if($character -> $lien == $_GET['id']){
         array_push($characters, $character);
     }
   }
@@ -26,14 +37,14 @@
   <nav aria-label="Fil d'Ariane">
     <ul class="uk-breadcrumb">
       <li><a href="../../index.php">Accueil</a></li>
-      <li><a href="../animes/animes.php">Animés</a></li>
-      <li><a href="../animes/animeDetail.php?id=<?=$anime->id?>"><?=$anime->title?></a></li>
+      <li><a href="../<?=$page?>s/<?=$page?>s.php"><?=$nom?></a></li>
+      <li><a href="../<?=$page?>s/<?=$page?>Detail.php?id=<?=$source->id?>"><?=$source->title?></a></li>
       <li><span>Personnages</span></li>
     </ul>
   </nav>
 </div>
 <div class="uk-margin-top uk-margin-large-left uk-margin-large-right uk-margin-bottom">
-  <h1 class="uk-font uk-text-center">Personnages de <?=$anime -> title?></h1>
+  <h1 class="uk-font uk-text-center">Personnages de <?=$source -> title?></h1>
     <div class="uk-grid-match uk-child-width-1-6@l uk-child-width-1-4@m uk-child-width-1-3@s uk-child-width-1-2 uk-flex uk-flex-center" uk-grid uk-height-match="target: .uk-card">
       <?php foreach($characters as $character) : ?>
         <div class="image-fond">

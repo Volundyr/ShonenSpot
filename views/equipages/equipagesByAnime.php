@@ -49,7 +49,7 @@
               <p class="uk-text-center uk-visible@s uk-font"><?=$text_grand?> ...</p>
               <p class="uk-text-center uk-hidden@s uk-font"><?=$text_petit?> ...</p>
             </div>
-            <a href="equipageDetail.php?id=<?=$equipage->id ?>" class="uk-link-reset uk-position-bottom-center uk-margin-bottom">
+            <a href="equipageDetail.php?idSource=<?=$anime->id ?>&id=<?=$equipage-> id?>" class="uk-link-reset uk-position-bottom-center uk-margin-bottom">
               <button class="uk-button uk-button-default uk-raduis">Voir Plus</button>
             </a>
           </div>

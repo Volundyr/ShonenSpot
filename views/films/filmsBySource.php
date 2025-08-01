@@ -2,18 +2,31 @@
   require_once('../../app/header.php')
 ?>
 <?php 
-  if(!isset($_GET['id']) | $_GET['id'] == ''){
+  if(!isset($_GET['id']) | $_GET['id'] == ''| !isset($_GET['source']) | $_GET['source'] == ''){
     header('Location:/views/error.php');
   }
 
   require_once('../../app/animeAPI.php');
-  $manga = getMangaById($_GET['id']);
-  $allFilms = getAllFilms();
+    $allFilms = getAllFilms();
 
   $films = [];
+  if($_GET['source'] == "Anime"){
+    $source = getAnimeById($_GET['id']);
+    $nom ="Animés";
+    $page = "anime";
+    $lien = 'anime_id';
+  }elseif($_GET['source'] == "Manga"){
+    $source = getMangaById($_GET['id']);
+    $nom = "Mangas";
+    $page = 'manga';
+    $lien = 'manga_id';
+  }else{
+    header('Location:/views/error.php');
+  }
+
 
   foreach($allFilms as $film){
-    if($film -> manga_id == $_GET['id']){
+    if($film -> $lien == $_GET['id']){
         array_push($films, $film);
     }
   }
@@ -22,14 +35,14 @@
   <nav aria-label="Fil d'Ariane">
     <ul class="uk-breadcrumb">
       <li><a href="../../index.php">Accueil</a></li>
-      <li><a href="../mangas/mangas.php">Manga</a></li>
-      <li><a href="../mangas/mangaDetail.php?id=<?=$manga->id?>"><?=$manga->title?></a></li>
+      <li><a href="../<?=$page?>s/<?=$page?>s.php"><?=$nom?></a></li>
+      <li><a href="../<?=$page?>s/<?=$page?>Detail.php?id=<?=$source->id?>"><?=$source->title?></a></li>
       <li><span>Films</span></li>
     </ul>
   </nav>
 </div>
 <div class="uk-margin-left uk-margin-large-left uk-margin-large-right uk-margin-bottom">
-  <h1 class="uk-font uk-text-center">Films de <?=$manga -> title?></h1>
+  <h1 class="uk-font uk-text-center">Films de <?=$source -> title?></h1>
   <div class="uk-grid-match uk-child-width-1-5@l uk-child-width-1-4@m uk-child-width-1-2@s uk-child-width-1-1 uk-flex uk-flex-center" uk-grid uk-height-match="target: .uk-card">
     <?php  foreach($films as $film) :?>
       <div class="image-fond">

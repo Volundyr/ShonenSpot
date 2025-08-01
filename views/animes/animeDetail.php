@@ -212,13 +212,13 @@
       <div class="image-fond">
         <div class="contenu uk-card uk-card-default uk-raduis" style="position: relative;">
           <div class="image-crop">
-            <img src="../../assets/img/mangas.png" alt="logo pour les mangas" class="uk-raduis-img uk-img" width="100%">
+            <img src="../../assets/img/personnages.png" alt="logo pour les personnages" class="uk-raduis-img uk-img" width="100%">
           </div>
           <div class="uk-margin-left uk-margin-right" style="margin-bottom: 70px;">
             <h2 class="uk-card-title uk-text-center uk-font uk-active">Personnage</h2>
             <p class="uk-text-center uk-font">Plongez au cœur de l’univers de <?=$anime->title?> et découvrez tous ses personnages emblématiques.</p>
           </div>
-          <a href="../characters/charactersByAnime.php?id=<?=$anime->id?>" class="uk-link-reset uk-position-bottom-center uk-margin-bottom">
+          <a href="../characters/charactersBySource.php?id=<?=$anime->id?>&source=Anime" class="uk-link-reset uk-position-bottom-center uk-margin-bottom">
             <button class="uk-button-default uk-button uk-raduis">Voir plus</button>
           </a>
         </div>
@@ -236,7 +236,7 @@
               <h2 class="uk-card-title uk-text-center uk-font uk-active">Equipages</h2>
               <p class="uk-text-center uk-font">Plongez au cœur de l’univers de <?=$anime->title?> et découvrez tous ses équipages emblématiques.</p>
             </div>
-            <a href="../equipages/equipages.php?id=<?=$anime->id?>" class="uk-link-reset uk-position-bottom-center uk-margin-bottom">
+            <a href="../equipages/equipagesByAnime.php?id=<?=$anime->id?>" class="uk-link-reset uk-position-bottom-center uk-margin-bottom">
               <button class="uk-button-default uk-button uk-raduis">Voir plus</button>
             </a>
           </div>
@@ -255,7 +255,7 @@
             <h2 class="uk-card-title uk-text-center uk-font uk-active">Films</h2>
             <p class="uk-text-center uk-font">Plongez au cœur de l’univers de <?=$anime->title?> et découvrez tous ses films d’animation incontournables.</p>
           </div>
-          <a href="../films/filmsByAnime.php?id=<?=$anime->id?>" class="uk-link-reset uk-position-bottom-center uk-margin-bottom">
+          <a href="../films/filmsBySource.php?id=<?=$anime->id?>&source=Anime" class="uk-link-reset uk-position-bottom-center uk-margin-bottom">
             <button class="uk-button-default uk-button uk-raduis">Voir plus</button>
           </a>
         </div>

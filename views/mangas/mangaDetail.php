@@ -186,7 +186,7 @@
               Plongez au cœur de l’univers de <?=$manga->title?> et découvrez tous ses personnages emblématiques.
             </p>
           </div>
-          <a href="../characters/charactersByManga.php?id=<?=$manga->id?>" class="uk-link-reset uk-position-bottom-center uk-margin-bottom">
+          <a href="../characters/charactersBySource.php?id=<?=$manga->id?>&source=Manga" class="uk-link-reset uk-position-bottom-center uk-margin-bottom">
             <button class="uk-button-default uk-button uk-raduis">Voir plus</button>
           </a>
         </div>
@@ -204,7 +204,7 @@
             <h2 class="uk-card-title uk-text-center uk-font uk-active">Films</h2>
             <p class="uk-text-center uk-font">Plongez au cœur de l’univers de <?=$manga->title?> et découvrez tous ses films d’animation incontournables.</p>
           </div>
-          <a href="../films/filmsByManga.php?id=<?=$manga->id?>" class="uk-link-reset uk-position-bottom-center uk-margin-bottom">
+          <a href="../films/filmsBySource.php?id=<?=$manga->id?>&source=Manga" class="uk-link-reset uk-position-bottom-center uk-margin-bottom">
             <button class="uk-button-default uk-button uk-raduis">Voir plus</button>
           </a>
         </div>

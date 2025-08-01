@@ -115,7 +115,7 @@
         <div class="uk-margin-left uk-margin-right uk-margin-top uk-margin-bottom">
           <h2 class="uk-card-title uk-active uk-font uk-text-center">Un simple dession animé ?</h2>
           <p class="uk-font uk-text-center">
-            Un animé, ce n’est pas qu’un simple dessin animé. Un dessin animé est souvent une histoire dans un univers sans suite, où chaque épisode est indépendant, une histoire à part entière. **Un animé**, en revanche, raconte une histoire complète avec une suite logique, un début et une fin.
+            Un animé, ce n’est pas qu’un simple dessin animé. Un dessin animé est souvent une histoire dans un univers sans suite, où chaque épisode est indépendant, une histoire à part entière. Un animé, en revanche, raconte une histoire complète avec une suite logique, un début et une fin.
           </p>
         </div>
       </div>  
